@@ -1,0 +1,14 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+	<class name="com.epoweb.model.TarjetaConsumo"  table="TARJETACONSUMO">
+		<id name="id" type="int" column="ID_TARJETACONSUMO" >
+			<generator class="increment"/>
+		</id>
+	 	<property name="tarjetaId" column="ID_TARJETA" type="int"/>
+	 	<property name="nombre" 	column="NOMBRE" 	type="string"/>	 	
+	 	<property name="monto" 		column="MONTO"  	type="big_decimal"/>
+	 	<property name="cuotas" 	column="CUOTAS" 	type="string"/>
+	 	<property name="fechapri" 	column="FECHAPRI" 	type="date"/>
+	</class>
+</hibernate-mapping>

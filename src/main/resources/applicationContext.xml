@@ -1,0 +1,242 @@
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:tx="http://www.springframework.org/schema/tx"
+	xmlns:jdbc="http://www.springframework.org/schema/jdbc" xmlns:context="http://www.springframework.org/schema/context"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans
+       http://www.springframework.org/schema/beans/spring-beans.xsd
+       http://www.springframework.org/schema/tx 
+       http://www.springframework.org/schema/tx/spring-tx-3.1.xsd 
+       http://www.springframework.org/schema/jdbc 
+       http://www.springframework.org/schema/jdbc/spring-jdbc.xsd
+       http://www.springframework.org/schema/context
+       http://www.springframework.org/schema/context/spring-context-3.0.xsd">
+	
+
+    
+    <!-- POOL DE CONEXIONES-->
+    <bean id="dataSource" class="com.mchange.v2.c3p0.ComboPooledDataSource" destroy-method="close">
+		<property name="driverClass"><value>${jdbc.driverClassName}</value></property>
+		<property name="user"><value>${jdbc.username}</value></property>
+		<property name="password"><value>${jdbc.password}</value></property>
+		<property name="jdbcUrl"><value>${jdbc.url}</value></property>
+	</bean>
+ 	
+
+    
+   	<!-- SESSION FACTORY  HIBERNATE -->
+	<bean id="sessionFactory" class="org.springframework.orm.hibernate5.LocalSessionFactoryBean">
+		<property name="dataSource">
+			<ref bean="dataSource" />
+		</property>
+
+		<property name="mappingResources">
+			<list>
+  				<value>hibernate/categoria.hbm.xml</value>
+  				<value>hibernate/diario.hbm.xml</value>
+  				<value>hibernate/inversion.hbm.xml</value>
+  				<value>hibernate/inversionDiario.hbm.xml</value>
+  				<value>hibernate/persona.hbm.xml</value>
+  				<value>hibernate/saldo.hbm.xml</value>
+  				<value>hibernate/tarjeta.hbm.xml</value>
+				<value>hibernate/tarjetaConsumo.hbm.xml</value>
+ 			</list>
+		</property>
+		<property name="hibernateProperties">
+			<props>
+				<prop key="hibernate.dialect">${hibernate.dialect}</prop>
+				<prop key="hibernate.show_sql">${hibernate.showsql}</prop>
+				<prop key="hibernate.format_sql">true</prop>
+				<prop key="hibernate.c3p0.idle_test_period">28680</prop>
+				<prop key="hibernate.hbm2ddl.auto">${hibernate.auto}</prop>
+			</props>
+		</property>
+	</bean>
+        
+	<bean id="transactionManager" class="org.springframework.orm.hibernate5.HibernateTransactionManager">
+		<property name="sessionFactory">
+			<ref bean="sessionFactory" />
+		</property>
+	</bean>
+
+	<!-- DIARIO !-->
+	<bean id="DiarioServiceTransactional" class="org.springframework.transaction.interceptor.TransactionProxyFactoryBean">
+		<property name="transactionManager">
+			<ref bean="transactionManager" />
+		</property>
+		<property name="target">
+			<ref bean="DiarioService" />
+		</property>
+		<property name="transactionAttributes">
+			<props>
+				<prop key="*">PROPAGATION_REQUIRED</prop>
+			</props>
+		</property>
+	</bean>
+
+	<bean id="DiarioService" class="com.epoweb.service.DiarioService">
+		<property name="repository">
+			<ref bean="DiarioRepository" />
+		</property>
+	</bean>
+
+	<bean id="DiarioRepository"	class="com.epoweb.repository.DiarioRepository">
+		<property name="sessionFactory">
+			<ref bean="sessionFactory" />
+		</property>
+	</bean>
+	
+	<!-- InversionDiario !-->
+	<bean id="InversionDiarioServiceTransactional" class="org.springframework.transaction.interceptor.TransactionProxyFactoryBean">
+		<property name="transactionManager">
+			<ref bean="transactionManager" />
+		</property>
+		<property name="target">
+			<ref bean="InversionDiarioService" />
+		</property>
+		<property name="transactionAttributes">
+			<props>
+				<prop key="*">PROPAGATION_REQUIRED</prop>
+			</props>
+		</property>
+	</bean>
+
+	<bean id="InversionDiarioService" class="com.epoweb.service.InversionDiarioService">
+		<property name="repository">
+			<ref bean="InversionDiarioRepository" />
+		</property>
+	</bean>
+
+	<bean id="InversionDiarioRepository"	class="com.epoweb.repository.InversionDiarioRepository">
+		<property name="sessionFactory">
+			<ref bean="sessionFactory" />
+		</property>
+	</bean>
+	
+	
+	
+	<!-- Persona !-->
+	<bean id="PersonaServiceTransactional" class="org.springframework.transaction.interceptor.TransactionProxyFactoryBean">
+		<property name="transactionManager">
+			<ref bean="transactionManager" />
+		</property>
+		<property name="target">
+			<ref bean="PersonaService" />
+		</property>
+		<property name="transactionAttributes">
+			<props>
+				<prop key="*">PROPAGATION_REQUIRED</prop>
+			</props>
+		</property>
+	</bean>
+
+	<bean id="PersonaService" class="com.epoweb.service.PersonaService">
+		
+		<property name="repository">
+			<ref bean="PersonaRepository" />
+		</property>		
+	
+	</bean>
+
+	<bean id="PersonaRepository"	class="com.epoweb.repository.PersonaRepository">
+		<property name="sessionFactory">
+			<ref bean="sessionFactory" />
+		</property>
+	</bean>
+	
+		
+	
+	<!-- Saldo !-->
+	<bean id="SaldoServiceTransactional" class="org.springframework.transaction.interceptor.TransactionProxyFactoryBean">
+		<property name="transactionManager">
+			<ref bean="transactionManager" />
+		</property>
+		<property name="target">
+			<ref bean="SaldoService" />
+		</property>
+		<property name="transactionAttributes">
+			<props>
+				<prop key="*">PROPAGATION_REQUIRED</prop>
+			</props>
+		</property>
+	</bean>
+
+	<bean id="SaldoService" class="com.epoweb.service.SaldoService">
+		<property name="repository">
+			<ref bean="SaldoRepository" />
+		</property>	
+		
+	</bean>
+
+	<bean id="SaldoRepository"	class="com.epoweb.repository.SaldoRepository">
+		<property name="sessionFactory">
+			<ref bean="sessionFactory" />
+		</property>
+	</bean>
+	
+	
+	<!-- TarjetaConsumo !-->
+	<bean id="TarjetaConsumoServiceTransactional" class="org.springframework.transaction.interceptor.TransactionProxyFactoryBean">
+		<property name="transactionManager">
+			<ref bean="transactionManager" />
+		</property>
+		<property name="target">
+			<ref bean="TarjetaConsumoService" />
+		</property>
+		<property name="transactionAttributes">
+			<props>
+				<prop key="*">PROPAGATION_REQUIRED</prop>
+			</props>
+		</property>
+	</bean>
+
+	<bean id="TarjetaConsumoService" class="com.epoweb.service.TarjetaConsumoService">
+		<property name="repository">
+			<ref bean="TarjetaConsumoRepository" />
+		</property>
+	</bean>
+
+	<bean id="TarjetaConsumoRepository"	class="com.epoweb.repository.TarjetaConsumoRepository">
+		<property name="sessionFactory">
+			<ref bean="sessionFactory" />
+		</property>
+	</bean>
+	
+	<!-- ESTADISTICAS !-->
+	<bean id="EstadisticasServiceTransactional" class="org.springframework.transaction.interceptor.TransactionProxyFactoryBean">
+		<property name="transactionManager">
+			<ref bean="transactionManager" />
+		</property>
+		<property name="target">
+			<ref bean="EstadisticasService" />
+		</property>
+		<property name="transactionAttributes">
+			<props>
+				<prop key="*">PROPAGATION_REQUIRED</prop>
+			</props>
+		</property>
+	</bean>
+
+	<bean id="EstadisticasService" class="com.epoweb.service.EstadisticasService">
+		<property name="repository">
+			<ref bean="EstadisticasRepository" />
+		</property>
+		<property name="diarioService">
+			<ref bean="DiarioServiceTransactional" />
+		</property>
+		<property name="inversiondiarioService">
+			<ref bean="InversionDiarioServiceTransactional" />
+		</property>
+		<property name="saldoService">
+			<ref bean="SaldoServiceTransactional" />
+		</property>
+		<property name="tarjetaconsumoService">
+			<ref bean="TarjetaConsumoServiceTransactional" />
+		</property>
+	</bean>
+	
+
+	<bean id="EstadisticasRepository"	class="com.epoweb.repository.EstadisticasRepository">
+		<property name="sessionFactory">
+			<ref bean="sessionFactory" />
+		</property>
+	</bean>
+</beans>

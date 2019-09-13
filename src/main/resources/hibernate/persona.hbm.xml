@@ -1,0 +1,16 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+	<class name="com.epoweb.model.Persona"  table="PERSONA">
+		<id name="id" type="int" column="ID_PERSONA" >
+			<generator class="increment"/>
+		</id>
+	 	<property name="nombre" unique="true"	column="NOMBRE" 	type="string"/>
+	 	<property name="password" 				column="PASSWORD" 	type="blob"/>
+	 	<property name="fecha" 					column="FECHA" 		type="date"/>
+	 	<property name="imagen" 				column="IMAGEN"  	type="int"/>
+	 	<property name="saldobanco" 			column="SALDOBANCO" type="big_decimal"/>
+	 	<property name="saldocash" 				column="SALDOCASH"  type="big_decimal"/>
+	 	<property name="vigente" 				column="VIGENTE" 	type="boolean"/>
+	</class>
+</hibernate-mapping>

@@ -1,0 +1,12 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+	<class name="com.epoweb.model.Saldo"  table="SALDO">
+		<id name="id" type="int" column="ID_SALDO" >
+			<generator class="increment"/>
+		</id>
+	 	<property name="personaId" 	column="ID_PERSONA" 	type="int"/>
+	 	<property name="fecha" 			column="FECHA" 			type="date"/>
+	 	<property name="saldo" 			column="SALDO"  		type="big_decimal"/>
+	</class>
+</hibernate-mapping>
