@@ -1,6 +1,8 @@
 package com.epoweb.repository;
 
 
+import java.util.List;
+
 import org.apache.log4j.Logger;
 import org.hibernate.query.Query;
 
@@ -27,7 +29,11 @@ public class DiarioRepository extends AbstractRepository{
 	public void deleteDiario(Diario diario) {
 		getCurrentSession().delete(diario);
 	}
-		
+	
+	@SuppressWarnings("unchecked")
+	public List<Diario> getAllDiario() {
+		return getCurrentSession().createQuery("FROM Diario d").list();		
+	}		
 		
 	public Categoria getCategoriaId(Integer id) {		
 		
