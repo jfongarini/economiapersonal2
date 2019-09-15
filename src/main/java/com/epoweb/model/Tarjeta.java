@@ -31,5 +31,9 @@ public class Tarjeta {
 		this.vigente = vigente;
 	}
 	
-	
+	public void update(Tarjeta tarjeta) {
+		this.setPersonaId(tarjeta.getPersonaId());
+		this.setNombre(tarjeta.getNombre());
+		this.setVigente(tarjeta.getVigente());		
+	}
 }

@@ -48,4 +48,12 @@ public class TarjetaConsumo {
 		this.fechapri = fechapri;
 	}
 	
+	public void update(TarjetaConsumo tarjetaConsumo) {
+		this.setPersonaId(tarjetaConsumo.getPersonaId());
+		this.setNombre(tarjetaConsumo.getNombre());
+		this.setMonto(tarjetaConsumo.getMonto());
+		this.setCuotas(tarjetaConsumo.getCuotas());
+		this.setFechapri(tarjetaConsumo.getFechapri());
+			
+	}
 }

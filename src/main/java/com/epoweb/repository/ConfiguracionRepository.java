@@ -19,7 +19,7 @@ public class ConfiguracionRepository extends AbstractRepository {
 	public List<Categoria> getCategorias() {
 		return getCurrentSession().createQuery("from Categoria").list();
 	}
-
+	
 	public Integer saveCategoria(Categoria categoria) {
 		return (Integer) getCurrentSession().save(categoria);
 	}
@@ -28,6 +28,9 @@ public class ConfiguracionRepository extends AbstractRepository {
 		getCurrentSession().update(categoria);
 	}
 	
+	public Categoria getCategoria(int id){
+		return getCurrentSession().get(Categoria.class, id);
+	}
 	
 	//Inversion
 	public Integer saveInversion (Inversion inversion) {
@@ -42,6 +45,10 @@ public class ConfiguracionRepository extends AbstractRepository {
 		return getCurrentSession().createQuery("from Inversion").list();
 	}
 	
+	public Inversion getInversion(int id){
+		return getCurrentSession().get(Inversion.class, id);
+	}
+	
 	
 	//Persona
 	public Integer savePersona(Persona persona) {
@@ -52,8 +59,12 @@ public class ConfiguracionRepository extends AbstractRepository {
 		getCurrentSession().update(persona);
 	}
 	
-	public List<Persona> getPersona() {
+	public List<Persona> getPersonas() {
 		return getCurrentSession().createQuery("from Persona").list();
+	}
+	
+	public Persona getPersona(int id){
+		return getCurrentSession().get(Persona.class, id);
 	}
 	
 	
@@ -66,8 +77,12 @@ public class ConfiguracionRepository extends AbstractRepository {
 		getCurrentSession().update(tarjeta);
 	}
 	
-	public List<Tarjeta> getTarjeta() {
+	public List<Tarjeta> getTarjetas() {
 		return getCurrentSession().createQuery("from Tarjeta").list();
+	}
+	
+	public Tarjeta getTarjeta(int id){
+		return getCurrentSession().get(Tarjeta.class, id);
 	}
 
 	

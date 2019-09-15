@@ -34,6 +34,10 @@ public class Saldo {
 		this.saldo = saldo;
 	}
 
-	
+	public void update(Saldo saldo) {
+		this.setPersonaId(saldo.getPersonaId());
+		this.setFecha(saldo.getFecha());
+		this.setSaldo(saldo.getSaldo());		
+	}
 	
 }

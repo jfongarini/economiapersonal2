@@ -31,5 +31,10 @@ public class Inversion {
 		this.vigente = vigente;
 	}
 
+	public void update(Inversion inversion) {
+		this.setPersonaId(inversion.getPersonaId());
+		this.setNombre(inversion.getNombre());
+		this.setVigente(inversion.getVigente());		
+	}
 	
 }

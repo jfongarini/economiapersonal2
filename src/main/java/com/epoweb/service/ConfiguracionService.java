@@ -23,9 +23,16 @@ public class ConfiguracionService {
 		return repository.saveCategoria(categoria);
 	}	
 	
-	public void updateCategoria(Categoria categoria) {
-		LOGGER.info("Actualizando la categoria: "+ categoria.getNombre());
-		repository.updateCategoria(categoria);
+	public Categoria updateCategoria(Categoria categoria) {
+		LOGGER.info("Actualizando Categoria " + categoria.getNombre());
+		Categoria updated = getCategoria(categoria.getId());
+		updated.update(categoria);
+		repository.updateCategoria(updated);
+		return updated;
+	}
+	
+	public Categoria getCategoria(int categoriaID) {
+		return repository.getCategoria(categoriaID);
 	}
 	
 	public List<Categoria> getCategorias() {
@@ -38,17 +45,23 @@ public class ConfiguracionService {
 		LOGGER.info("Guardando la inversion: "+ inversion.getNombre());
 		return repository.saveInversion(inversion);
 	}
-
-	public void updateInversion(Inversion inversion) {
-		LOGGER.info("Actualizando la inversion: "+ inversion.getNombre());
-		repository.updateInversion(inversion);
-	}
 		
 	public List<Inversion> getInversiones() {
 		LOGGER.info("Obteniendo todas las inversiones");
 		return repository.getInversiones();
 	}
 	
+	public Inversion updateInversion(Inversion inversion) {
+		LOGGER.info("Actualizando Inversion " + inversion.getId());
+		Inversion updated = getInversion(inversion.getId());
+		updated.update(inversion);
+		repository.updateInversion(updated);
+		return updated;
+	}
+	
+	public Inversion getInversion(int inversionID) {
+		return repository.getInversion(inversionID);
+	}
 	
 	//Persona
 	public Integer savePersona(Persona persona) {
@@ -56,31 +69,44 @@ public class ConfiguracionService {
 		return repository.savePersona(persona);
 	}
 
-	public void updatePersona(Persona persona) {
-		LOGGER.info("Actualizando la persona: "+ persona.getNombre());
-		repository.updatePersona(persona);;
-	}
-	
-	public List<Persona> getPersona() {
+	public List<Persona> getPersonas() {
 		LOGGER.info("Obteniendo todas las personas");
-		return repository.getPersona();
+		return repository.getPersonas();
 	}
 	
+	public Persona updatePersona(Persona persona) {
+		LOGGER.info("Actualizando Persona " + persona.getNombre());
+		Persona updated = getPersona(persona.getId());
+		updated.update(persona);
+		repository.updatePersona(updated);
+		return updated;
+	}
+	
+	public Persona getPersona(int personaID) {
+		return repository.getPersona(personaID);
+	}
 	
 	//Tarjeta
 	public Integer saveTarjeta(Tarjeta tarjeta) {
 		LOGGER.info("Guardando la tarjeta: "+ tarjeta.getNombre());
 		return repository.saveTarjeta(tarjeta);
 	}
-
-	public void updateTarjeta(Tarjeta tarjeta) {
-		LOGGER.info("Actualizando la tarjeta: "+ tarjeta.getNombre());
-		repository.updateTarjeta(tarjeta);;
+	
+	public List<Tarjeta> getTarjetas() {
+		LOGGER.info("Obteniendo todas las tarjetas");
+		return repository.getTarjetas();
 	}
 	
-	public List<Tarjeta> getTarjeta() {
-		LOGGER.info("Obteniendo todas las tarjetas");
-		return repository.getTarjeta();
+	public Tarjeta updateTarjeta(Tarjeta tarjeta) {
+		LOGGER.info("Actualizando Tarjeta " + tarjeta.getNombre());
+		Tarjeta updated = getTarjeta(tarjeta.getId());
+		updated.update(tarjeta);
+		repository.updateTarjeta(updated);
+		return updated;
+	}
+	
+	public Tarjeta getTarjeta(int tarjetaID) {
+		return repository.getTarjeta(tarjetaID);
 	}
 	
 	

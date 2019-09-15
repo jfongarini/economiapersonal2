@@ -49,5 +49,13 @@ public class Diario {
 		this.detalle = detalle;
 	}
 
+	
+	public void update(Diario diario) {
+		this.setPersonaId(diario.getPersonaId());
+		this.setCategoriaId(diario.getCategoriaId());
+		this.setFecha(diario.getFecha());
+		this.setMonto(diario.getMonto());
+		this.setDetalle(diario.getDetalle());
+	}
 
 }

@@ -63,6 +63,15 @@ public class Persona {
 		this.vigente = vigente;
 	}
 	
-	
+	public void update(Persona persona) {
+		this.setNombre(persona.getNombre());
+		this.setPassword(persona.getPassword());
+		this.setFecha(persona.getFecha());
+		this.setImagen(persona.getImagen());
+		this.setSaldobanco(persona.getSaldobanco());
+		this.setSaldocash(persona.getSaldocash());
+		this.setVigente(persona.getVigente());
+		
+	}
 	
 }

@@ -62,6 +62,15 @@ public class InversionDiario {
 		this.fechafin = fechafin;
 	}
 
-	
+	public void update(InversionDiario inversionDiario) {
+		this.setPersonaId(inversionDiario.getPersonaId());
+		this.setInversionId(inversionDiario.getInversionId());
+		this.setFecha(inversionDiario.getFecha());
+		this.setMonto(inversionDiario.getMonto());
+		this.setDetalle(inversionDiario.getDetalle());
+		this.setGanancia(inversionDiario.getGanancia());
+		this.setFechafin(inversionDiario.getFechafin());
+		
+	}
 	
 }

@@ -39,7 +39,11 @@ public class Categoria {
 		this.vigente = vigente;
 	}
 	
-
-	
-	
+	public void update(Categoria categoria) {
+		this.setPersonaId(categoria.getPersonaId());
+		this.setNombre(categoria.getNombre());
+		this.setIsGasto(categoria.getIsGasto());
+		this.setVigente(categoria.getVigente());
+	}
+		
 }
