@@ -17,9 +17,12 @@ public class PersonaService {
 		return repository.savePersona(persona);
 	}	
 	
-	public void updatePersona(Persona persona) {
+	public Persona updatePersona(Persona persona) {
 		LOGGER.info("Actualizando la persona: "+ persona.getNombre());
-		repository.updatePersona(persona);
+		Persona updated = getPersonaId(persona.getId());
+		updated.update(persona);
+		repository.updatePersona(updated);
+		return updated;
 	}
 	
 	public Persona getPersonaId(int persona) {

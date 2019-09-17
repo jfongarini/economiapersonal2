@@ -3,7 +3,6 @@ package com.epoweb.service;
 import java.util.List;
 
 import org.apache.log4j.Logger;
-import org.hibernate.query.Query;
 
 import com.epoweb.model.TarjetaConsumo;
 import com.epoweb.repository.TarjetaConsumoRepository;
@@ -20,25 +19,30 @@ public class TarjetaConsumoService {
 		return repository.saveTarjetaConsumo(tarjetaConsumo);
 	}	
 	
-	public void updateTarjetaConsumo(TarjetaConsumo tarjetaConsumo) {
+	public TarjetaConsumo updateTarjetaConsumo(TarjetaConsumo tarjetaConsumo) {
 		LOGGER.info("Actualizando el tarjetaConsumo: "+ tarjetaConsumo.getId());
-		repository.updateTarjetaConsumo(tarjetaConsumo);
+		TarjetaConsumo updated = getTarjetaConsumoId(tarjetaConsumo.getId());
+		updated.update(tarjetaConsumo);
+		repository.updateTarjetaConsumo(updated);
+		return updated;
 	}
 	
-	public TarjetaConsumo v(int tarjetaConsumo) {
+	public TarjetaConsumo getTarjetaConsumoId(int tarjetaConsumo) {
 		LOGGER.info("Obteniendo el tarjetaConsumo: "+ tarjetaConsumo);
 		return repository.getTarjetaConsumoId(tarjetaConsumo);
 	}
 	
 	@SuppressWarnings("unchecked")
-	public List<TarjetaConsumo> getTarjetaConsumo() {
+	public List<TarjetaConsumo> getTarjetaConsumos() {
 		LOGGER.info("Obteniendo todas los tarjetaConsumo");
-		return repository.getTarjetaConsumo();	
+		return repository.getTarjetaConsumos();	
 	}
 	
-	public void deleteTarjetaConsumo(TarjetaConsumo tarjetaConsumo) {
-		LOGGER.info("Borrando el tarjetaConsumo: "+ tarjetaConsumo.getId());
-		repository.deleteTarjetaConsumo(tarjetaConsumo);;
+	public TarjetaConsumo deleteTarjetaConsumo(int tarjetaConsumoId) {
+		TarjetaConsumo tarjetaConsumo = getTarjetaConsumoId(tarjetaConsumoId);
+		LOGGER.info("Borrando el tarjetaConsumo: "+ tarjetaConsumoId);
+		repository.deleteTarjetaConsumo(tarjetaConsumo);
+		return tarjetaConsumo;
 	}
 	
 

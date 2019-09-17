@@ -3,7 +3,6 @@ package com.epoweb.service;
 import java.util.List;
 
 import org.apache.log4j.Logger;
-import org.hibernate.query.Query;
 
 import com.epoweb.model.Categoria;
 import com.epoweb.model.Diario;
@@ -21,9 +20,12 @@ public class DiarioService {
 		return repository.saveDiario(diario);
 	}	
 	
-	public void updateDiario(Diario diario) {
+	public Diario updateDiario(Diario diario) {
 		LOGGER.info("Actualizando el diario: "+ diario.getId());
-		repository.updateDiario(diario);
+		Diario updated = getDiario(diario.getId());
+		updated.update(diario);
+		repository.updateDiario(updated);
+		return updated;
 	}
 	
 	public Diario getDiario(int diarioId) {

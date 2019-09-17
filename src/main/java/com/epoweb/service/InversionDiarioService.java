@@ -20,11 +20,14 @@ public class InversionDiarioService {
 		return repository.saveInversionDiario(inversionDiario);
 	}	
 	
-	public void updateInversionDiario(InversionDiario inversionDiario) {
+	public InversionDiario updateInversionDiario(InversionDiario inversionDiario) {
 		LOGGER.info("Actualizando el inversionDiario: "+ inversionDiario.getId());
-		repository.updateInversionDiario(inversionDiario);
+		InversionDiario updated = getInversionDiarioId(inversionDiario.getId());
+		updated.update(inversionDiario);
+		repository.updateInversionDiario(updated);
+		return updated;
 	}
-	
+		
 	public InversionDiario getInversionDiarioId(int inversionDiarioId) {
 		LOGGER.info("Obteniendo el inversionDiario: "+ inversionDiarioId);
 		return repository.getInversionDiarioId(inversionDiarioId);
@@ -36,13 +39,12 @@ public class InversionDiarioService {
 		return repository.getInversionDiarios();	
 	}
 	
-	public void deleteInversionDiario(InversionDiario inversionDiario) {
-		LOGGER.info("Borrando el inversionDiario: "+ inversionDiario.getId());
-		repository.deleteInversionDiario(inversionDiario);;
+	public InversionDiario deleteInversionDiario(int inversionDiarioId) {
+		InversionDiario inversionDiario = getInversionDiarioId(inversionDiarioId);
+		LOGGER.info("Borrando el inversionDiario: "+ inversionDiarioId);
+		repository.deleteInversionDiario(inversionDiario);
+		return inversionDiario;
 	}
-	
-
-	
 	
 	public InversionDiarioRepository getRepository() {
 		return repository;

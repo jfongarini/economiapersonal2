@@ -17,9 +17,12 @@ public class SaldoService {
 		return repository.saveSaldo(saldo);
 	}	
 	
-	public void updateSaldo(Saldo saldo) {
+	public Saldo updateSaldo(Saldo saldo) {
 		LOGGER.info("Actualizando el saldo: "+ saldo.getId());
-		repository.updateSaldo(saldo);
+		Saldo updated = getSaldo(saldo.getId());
+		updated.update(saldo);
+		repository.updateSaldo(updated);
+		return updated;
 	}
 	
 	public Saldo getSaldo(int saldo) {

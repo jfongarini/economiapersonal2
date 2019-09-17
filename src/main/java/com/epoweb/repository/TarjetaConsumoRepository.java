@@ -9,7 +9,7 @@ import com.epoweb.model.TarjetaConsumo;
 @SuppressWarnings({ "unchecked" })
 public class TarjetaConsumoRepository extends AbstractRepository{
 	
-	public List<TarjetaConsumo> getTarjetaConsumo() {
+	public List<TarjetaConsumo> getTarjetaConsumos() {
 		return getCurrentSession().createQuery("from TarjetaConsumo").list();
 	}
 
