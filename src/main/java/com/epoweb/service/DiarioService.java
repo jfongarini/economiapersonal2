@@ -33,7 +33,6 @@ public class DiarioService {
 		return repository.getDiario(diarioId);
 	}
 	
-	@SuppressWarnings("unchecked")
 	public List<Diario> getAllDiario() {
 		LOGGER.info("Obteniendo todas los diario");
 		return repository.getAllDiario();	

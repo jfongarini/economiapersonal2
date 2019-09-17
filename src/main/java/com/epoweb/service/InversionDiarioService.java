@@ -3,7 +3,6 @@ package com.epoweb.service;
 import java.util.List;
 
 import org.apache.log4j.Logger;
-import org.hibernate.query.Query;
 
 import com.epoweb.model.InversionDiario;
 import com.epoweb.repository.InversionDiarioRepository;
@@ -33,7 +32,6 @@ public class InversionDiarioService {
 		return repository.getInversionDiarioId(inversionDiarioId);
 	}
 	
-	@SuppressWarnings("unchecked")
 	public List<InversionDiario> getInversionDiarios() {
 		LOGGER.info("Obteniendo todas los inversionDiario");
 		return repository.getInversionDiarios();	

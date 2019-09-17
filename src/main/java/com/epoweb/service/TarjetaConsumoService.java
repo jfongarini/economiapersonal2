@@ -32,7 +32,6 @@ public class TarjetaConsumoService {
 		return repository.getTarjetaConsumoId(tarjetaConsumo);
 	}
 	
-	@SuppressWarnings("unchecked")
 	public List<TarjetaConsumo> getTarjetaConsumos() {
 		LOGGER.info("Obteniendo todas los tarjetaConsumo");
 		return repository.getTarjetaConsumos();	
