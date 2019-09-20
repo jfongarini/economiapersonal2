@@ -22,11 +22,25 @@ app.controller('configuracionController', function ($scope, $http) {
     };
 
 
-    //Alta categoria
-    $scope.addCategoria = function() {
+    //Alta categoria ingreso
+    $scope.addCategoriaIngreso = function() {
         $http.post('/rest/configuracion/categoria/alta', $scope.ngCategoria)
             .then(function successCallback(response) {
                 $scope.categorias.push(response.data);
+                $scope.categorias.isGasto="false"
+                $scope.ngCategoria={};
+                $scope.messageCategoria='';
+              }, function errorCallback(response) {
+                $scope.messageCategoria=response.data.message;
+            });
+    };
+
+    //Alta categoria gasto
+    $scope.addCategoriaGasto = function() {
+        $http.post('/rest/configuracion/categoria/alta', $scope.ngCategoria)
+            .then(function successCallback(response) {
+                $scope.categorias.push(response.data);
+                $scope.categorias.isGasto="true"
                 $scope.ngCategoria={};
                 $scope.messageCategoria='';
               }, function errorCallback(response) {

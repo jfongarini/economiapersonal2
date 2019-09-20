@@ -100,16 +100,5 @@ public class ConfiguracionControllerREST {
 		Tarjeta updated = service.updateTarjeta(tarjeta);
 		return new ResponseEntity<>(updated ,HttpStatus.OK);
 	}
-
-	
-	
-	public ConfiguracionService getService() {
-		return service;
-	}
-	
-	public void setService(ConfiguracionService service) {
-		this.service = service;
-	}
-	
 	
 }

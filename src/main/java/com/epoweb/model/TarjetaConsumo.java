@@ -6,7 +6,7 @@ import java.util.Date;
 public class TarjetaConsumo {
 
 	private int id;
-	private Integer personaId;
+	private Integer tarjetaId;
 	private String nombre;
 	private BigDecimal monto;
 	private Integer cuotas;
@@ -17,11 +17,11 @@ public class TarjetaConsumo {
 	public void setId(int id) {
 		this.id = id;
 	}
-	public Integer getPersonaId() {
-		return personaId;
+	public Integer getTarjetaId() {
+		return tarjetaId;
 	}
-	public void setPersonaId(Integer personaId) {
-		this.personaId = personaId;
+	public void setTarjetaId(Integer tarjetaId) {
+		this.tarjetaId = tarjetaId;
 	}
 	public String getNombre() {
 		return nombre;
@@ -49,7 +49,7 @@ public class TarjetaConsumo {
 	}
 	
 	public void update(TarjetaConsumo tarjetaConsumo) {
-		this.setPersonaId(tarjetaConsumo.getPersonaId());
+		this.setTarjetaId(tarjetaConsumo.getTarjetaId());
 		this.setNombre(tarjetaConsumo.getNombre());
 		this.setMonto(tarjetaConsumo.getMonto());
 		this.setCuotas(tarjetaConsumo.getCuotas());

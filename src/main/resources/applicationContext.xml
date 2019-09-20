@@ -56,6 +56,33 @@
 			<ref bean="sessionFactory" />
 		</property>
 	</bean>
+	
+	<!-- Configuracion !-->
+	<bean id="ConfiguracionServiceTransactional" class="org.springframework.transaction.interceptor.TransactionProxyFactoryBean">
+		<property name="transactionManager">
+			<ref bean="transactionManager" />
+		</property>
+		<property name="target">
+			<ref bean="ConfiguracionService" />
+		</property>
+		<property name="transactionAttributes">
+			<props>
+				<prop key="*">PROPAGATION_REQUIRED</prop>
+			</props>
+		</property>
+	</bean>
+
+	<bean id="ConfiguracionService" class="com.epoweb.service.ConfiguracionService">
+		<property name="repository">
+			<ref bean="ConfiguracionRepository" />
+		</property>
+	</bean>
+
+	<bean id="ConfiguracionRepository"	class="com.epoweb.repository.ConfiguracionRepository">
+		<property name="sessionFactory">
+			<ref bean="sessionFactory" />
+		</property>
+	</bean>
 
 	<!-- DIARIO !-->
 	<bean id="DiarioServiceTransactional" class="org.springframework.transaction.interceptor.TransactionProxyFactoryBean">
@@ -218,18 +245,6 @@
 	<bean id="EstadisticasService" class="com.epoweb.service.EstadisticasService">
 		<property name="repository">
 			<ref bean="EstadisticasRepository" />
-		</property>
-		<property name="diarioService">
-			<ref bean="DiarioServiceTransactional" />
-		</property>
-		<property name="inversiondiarioService">
-			<ref bean="InversionDiarioServiceTransactional" />
-		</property>
-		<property name="saldoService">
-			<ref bean="SaldoServiceTransactional" />
-		</property>
-		<property name="tarjetaconsumoService">
-			<ref bean="TarjetaConsumoServiceTransactional" />
 		</property>
 	</bean>
 	
