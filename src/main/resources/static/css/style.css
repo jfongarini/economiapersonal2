@@ -1,0 +1,263 @@
+body{
+    background-color:  #F3F4F6;
+    margin-left: 0px;
+    margin-top: 0px;
+    font-family: 'Roboto', sans-serif;
+    font-size: 0.8rem
+}
+.fail-login{
+    display: none;
+    font-weight: 400;
+    color: white;
+    font-size: 15px;
+    clear: left;
+}
+.login-body{
+    background-color: #333333ab;
+}
+
+.login-form {
+    text-align: center;
+    justify-content: center;
+    margin-top: 100px;
+}
+
+.login-form input{
+    font-family: 'Roboto', sans-serif;
+    outline: none !important;
+    background-color: #333;
+    color: white;
+    border: 0px;
+    display: inline-block;
+    margin-top: 5px;
+    margin-bottom: 15px;
+    box-shadow: 0 1px 4px rgba(0, 0, 0, .6);
+}
+
+.login-form label{
+    font-weight: 500;
+    color: #333;
+    font-size: 15px;
+    display: inline-block;  
+    clear: left;
+}
+
+.login-logo{
+    margin-left: 75px;
+    margin-bottom: 25px;
+}
+
+
+.logo{
+    margin:20px;
+}
+
+.card{
+    background-color: #FFF;
+    max-width: 250px;
+    padding: 20px 0px 20px 0px;
+    margin-left: auto;
+    margin-right: auto;
+    box-shadow: 0 1px 3px 0 rgba(0,0,0,.2), 0 1px 1px 0 rgba(0,0,0,.14), 0 2px 1px -1px rgba(0,0,0,.12);
+}
+
+
+.content {
+    margin-left: 210px
+}
+
+@-webkit-keyframes fadeIn { from { opacity:0; } to { opacity:1; } }
+@-moz-keyframes fadeIn { from { opacity:0; } to { opacity:1; } }
+@keyframes fadeIn { from { opacity:0; } to { opacity:1; } }
+
+.menu{
+    z-index: -1;
+}
+
+table,  .banner-busqueda{
+    width: 95%
+}
+
+table {
+    border-collapse: collapse;
+}
+
+.main-table{
+    text-align: left;
+    margin-bottom: 20px;
+    background-color: white;
+    box-shadow: 0 1px 3px 0 rgba(0,0,0,.2), 0 1px 1px 0 rgba(0,0,0,.14), 0 2px 1px -1px rgba(0,0,0,.12)
+}
+
+
+table>tbody>tr:nth-child(odd) {
+    background-color: #F7F7F7
+}
+
+table tr{
+    height: 30px
+}
+
+tr:hover td {
+    background-color: #292961;
+    color: white;
+    cursor: pointer
+}
+
+tr:hover a {
+    color: white;
+    cursor: pointer
+}
+
+td,th{
+    padding-left: 8px;
+    overflow: hidden;
+}
+
+th {
+    font-weight: 400;
+}
+
+ul {
+    list-style-type: none;
+    margin: 0;
+    top: 0;
+    background-color:  #ffffff;
+    padding: 0;
+    height: 100%;
+    position: fixed; 
+    overflow: auto;
+    padding-top: 50px;
+    box-shadow: 2px 4px 4px #333
+}
+
+li a {
+    display: block;
+    color: #333;
+    padding: 8px 16px;
+    text-decoration: none
+}
+
+li a:hover {
+    background-color: #333;
+    color: #FFFFFF;
+    cursor: pointer
+}
+
+.red {
+    color: red; 
+}
+
+.green {
+    color: green;
+}
+
+tr:hover i{
+    visibility: visible;
+}
+
+
+.material-icons.rojo { color: rgba(249, 0, 0, .7); }
+.material-icons.verde { color: rgba(0, 249, 0, .5); }
+
+.material-icons{
+    margin-right: 8px;
+    font-size: 18px;
+    vertical-align: sub
+}
+
+@media (max-width: 700px){
+    body, .form-field{font-size: 12px}
+    table, .banner {width: 98%;}
+    .menu{width: 60px}
+    .logo{display: none}
+    .link-label{display: none}
+    .content, .message{margin-left: 80px}
+}
+
+[ng\:cloak], [ng-cloak], [data-ng-cloak], [x-ng-cloak], .ng-cloak, .x-ng-cloak {
+  /*display: none !important;*/
+}
+
+
+.usuario-info {
+    list-style-type: none;
+    margin: 0;
+    top: 0;
+    background-color: #ffffff;
+    height: 100%;
+    position: relative;
+    overflow: auto;
+    box-shadow: 0 2px 2px #333;
+    width: 100%;
+    padding: 8px 4px;
+}
+
+.display-initial {
+  display: initial;
+}
+
+.separator {
+    border-left: 1px solid #c2c1c1;
+    width: 1px;
+    height: 20px;
+    margin-left: 5px;
+    margin-right: 5px;
+    vertical-align: bottom;
+    display: inline-block;
+}
+
+.blur {
+    -webkit-filter: blur(5px);
+    -moz-filter: blur(5px);
+    -o-filter: blur(5px);
+    -ms-filter: blur(5px);
+    filter: blur(5px)
+}
+
+.imagen-div{
+display: initial;
+    right: 0;
+    position: fixed;
+        margin-top: -5px;
+    margin-right: 4px;
+}
+
+.imagen-img{
+  width: 30px;
+  border-radius: 50%;
+  background-color: white;
+}
+
+.usuario {
+    display: initial;
+    right: 43px;
+    position: fixed;
+}
+
+.principal{
+  padding-top: 40px;
+}
+
+.content {
+    margin-left: 160px
+}
+
+.main-table{
+    table-layout: fixed;
+    width: 800px;
+    margin-top:10px;
+    text-align: left;
+    background-color: white;
+    font-size: 13px;
+    box-shadow: 0 1px 3px 0 rgba(0,0,0,.2), 0 1px 1px 0 rgba(0,0,0,.14), 0 2px 1px -1px rgba(0,0,0,.12)
+}
+
+.primerCol{
+  width: 100px !important;
+}
+
+.segCol{
+  width: 50px !important;
+}
+

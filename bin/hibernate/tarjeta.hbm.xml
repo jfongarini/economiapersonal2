@@ -1,0 +1,12 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+	<class name="com.epoweb.model.Tarjeta"  table="TARJETA">
+		<id name="id" type="int" column="ID_TARJETA" >
+			<generator class="increment"/>
+		</id>
+	 	<property name="personaId" column="ID_PERSONA"	type="int"/>
+	 	<property name="nombre" 	column="NOMBRE" 	type="string"/>
+	 	<property name="vigente"	column="VIGENTE" 	type="boolean"/>
+	</class>
+</hibernate-mapping>

@@ -1,0 +1,15 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+	<class name="com.epoweb.model.InversionDiario"  table="INVERSIONDIARIO">
+		<id name="id" type="int" column="ID_INVERSIONDIARIO" >
+			<generator class="increment"/>
+		</id>
+	 	<property name="inversionId" 	column="ID_INVERSION" 	type="int"/>
+	 	<property name="fecha" 			column="FECHA" 			type="date"/>
+	 	<property name="monto" 			column="MONTO"  		type="big_decimal"/>
+	 	<property name="detalle" 		column="DETALLE" 		type="string"/>
+	 	<property name="ganancia" 		column="GANANCIA"  		type="big_decimal"/>
+	 	<property name="fechafin" 		column="FECHAFIN" 		type="date"/>
+	</class>
+</hibernate-mapping>
