@@ -1,7 +1,8 @@
-app.controller('configuracionController', function ($scope, $http) {
+app.controller('diarioController', function ($scope, $http) {
 
     //INIT Diario
     $scope.init = function(){
+        $scope.activeDiario=true;
         $scope.getAllDiario();
 
         $scope.ngDiario={};

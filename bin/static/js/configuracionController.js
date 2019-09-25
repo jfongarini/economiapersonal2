@@ -2,6 +2,7 @@ app.controller('configuracionController', function ($scope, $http) {
 
     //INIT CONFIGURACION
     $scope.init = function(){
+        $scope.activeConfiguracion=true;
         $scope.getAllCategorias();
         $scope.getAllInversiones();
         $scope.getAllPersonas();

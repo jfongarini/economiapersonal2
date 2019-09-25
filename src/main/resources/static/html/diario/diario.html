@@ -1,0 +1,86 @@
+<!Doctype html>
+<html>
+<head> 
+  <title>Epoweb | Diario</title>
+  <#include "/common/head.html">
+</head>
+<body ng-app=epoweb ng-controller=diarioController data-ng-init="init()">
+    <#include "/common/menu.html">
+    <div class="principal" id="principal">  
+        <div class=banner>
+            <label class="banner-button add" ng-click="newMovimiento()"><i class="material-icons" >attach_money</i>Nuevo</label>   
+            <div class="separator"></div>
+            <label class=banner-button ng-click="ShowHideDia()"><i class=material-icons>search</i> D&iacute;as </label>
+            <div class="separator"></div>
+            <label class=banner-button ng-click="ShowHideCategoria()"><i class=material-icons>search</i> Categor&iacute;a </label>            
+        </div>
+        <div id=content class="content fade-in">
+            <table ng-cloak id=table class=main-table>
+                <thead>
+                    <tr>
+                        <th class="primerCol">INGRESOS</th>
+                        <th></th>
+                        <th></th>
+                        <th class="maxmin"><i class=material-icons>keyboard_arrow_up</i></th>
+                    </tr>
+                </thead>
+                <thead>
+                    <tr>
+                        <th>Dia</th>
+                        <th>Importe</th>
+                        <th>Categor&iacute;a</th>
+                        <th>Detalle</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr ng-cloak id={{ingreso}} class="data-row fade-in" *ngFor="let ingreso of resumenI" >
+                        <td  class="primerCol" data-id={{ingreso}}>{{ingreso.nombre}}</td>
+                        <td data-id={{ingreso}}>100000</td>
+                        <td data-id={{ingreso}}>2</td>
+                        <td data-id={{ingreso}}>{{ingreso.m03}}</td>
+                    </tr>
+                    <tr ng-cloak class="data-row fade-in color-total">
+                        <td  class="primerCol">Total</td>
+                        <td>100000</td>
+                        <td>2</td>
+                        <td>{{resumenTotalI.m03}}</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <div id=content class="content fade-in">
+            <table ng-cloak id=table class=main-table>
+                <thead>
+                    <tr>
+                        <th class="primerCol">GASTOS</th>
+                    </tr>
+                </thead>
+                <thead>
+                    <tr>
+                        <th>Dia</th>
+                        <th>Importe</th>
+                        <th>Categor&iacute;a</th>
+                        <th>Detalle</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr ng-cloak id={{gasto}} class="data-row fade-in" *ngFor="let gasto of resumenG" >
+                        <td class="primerCol" data-id={{gasto}}>{{gasto.nombre}}</td>
+                        <td data-id={{gasto}}>{{gasto.m01}}</td>
+                        <td data-id={{gasto}}>{{gasto.m02}}</td>
+                        <td data-id={{gasto}}>{{gasto.m03}}</td>
+                    </tr>
+                    <tr ng-cloak class="data-row fade-in color-total">
+                        <td class="primerCol">Total</td>
+                        <td>{{resumenTotalG.m01}}</td>
+                        <td>{{resumenTotalG.m02}}</td>
+                        <td>{{resumenTotalG.m03}}</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+    <#include "/common/javascript.html">
+    <script src="js/diarioController.js" ></script>
+</body>
+</html>
