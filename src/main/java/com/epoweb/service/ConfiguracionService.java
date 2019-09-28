@@ -31,13 +31,25 @@ public class ConfiguracionService {
 		return updated;
 	}
 	
+	public Categoria deleteCategoria(Categoria categoria) {
+		Categoria repoCategoria = getCategoria(categoria.getId());
+		repoCategoria.setVigente(false);
+		saveCategoria(repoCategoria);
+		return repoCategoria;
+	}
+	
 	public Categoria getCategoria(int categoriaID) {
 		return repository.getCategoria(categoriaID);
 	}
 	
-	public List<Categoria> getCategorias() {
+	public List<Categoria> getCategoriasIngreso() {
 		LOGGER.info("Obteniendo todas las categorias");
-		return repository.getCategorias();
+		return repository.getCategoriasIngreso();
+	}
+	
+	public List<Categoria> getCategoriasGasto() {
+		LOGGER.info("Obteniendo todas las categorias");
+		return repository.getCategoriasGasto();
 	}
 	
 	//Inversion

@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -27,9 +28,20 @@ public class ConfiguracionControllerREST {
 	@Qualifier("ConfiguracionServiceTransactional")
 	private ConfiguracionService service;
 	
-	@GetMapping("/categoria")
-    public ResponseEntity<List<Categoria>> getCategorias() {
-		return new ResponseEntity<>(service.getCategorias(), HttpStatus.OK);
+	@GetMapping("/categoriasIngreso")
+    public ResponseEntity<List<Categoria>> getCategoriasIngreso() {
+		return new ResponseEntity<>(service.getCategoriasIngreso(), HttpStatus.OK);
+	}
+	
+	@GetMapping("/categoriasGasto")
+    public ResponseEntity<List<Categoria>> getCategoriasGasto() {
+		return new ResponseEntity<>(service.getCategoriasGasto(), HttpStatus.OK);
+	}
+	
+	@GetMapping("/categoria/{idCategoria}")
+	public ResponseEntity<Categoria> getCategoria(@PathVariable Integer idCategoria) {
+		Categoria categoria = service.getCategoria(idCategoria);
+		return new ResponseEntity<>(categoria ,HttpStatus.OK);
 	}
 	
 	@PostMapping("/categoria/alta")
@@ -39,12 +51,17 @@ public class ConfiguracionControllerREST {
 		return new ResponseEntity<>(categoria, HttpStatus.CREATED);
 	}
 		
-	@PutMapping("/categoria/actualizar/{idCategoria}")
+	@PutMapping("/categoria/actualizar/{categoria}")
     public ResponseEntity<Categoria> updateCategoria(@RequestBody Categoria categoria) {
 		Categoria updated = service.updateCategoria(categoria);
 		return new ResponseEntity<>(updated ,HttpStatus.OK);
 	}
 	
+	@PutMapping("/categoria/baja/{categoria}")
+    public ResponseEntity<Categoria> deleteCategoria(@RequestBody Categoria categoria) {
+		Categoria updated = service.deleteCategoria(categoria);
+		return new ResponseEntity<>(updated ,HttpStatus.OK);
+	}
 	
 	@GetMapping("/inversion")
     public ResponseEntity<List<Inversion>> getInversiones() {

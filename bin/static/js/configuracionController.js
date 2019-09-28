@@ -3,33 +3,52 @@ app.controller('configuracionController', function ($scope, $http) {
     //INIT CONFIGURACION
     $scope.init = function(){
         $scope.activeConfiguracion=true;
-        $scope.getAllCategorias();
+        $scope.getAllCategoriasIngreso();
+        $scope.getAllCategoriasGasto();
         $scope.getAllInversiones();
         $scope.getAllPersonas();
         $scope.getAllTarjetas();
 
-        $scope.ngCategoria={};
+        $scope.ngCategoriaingreso={};
+        $scope.ngCategoriaGasto={};
         $scope.ngInversion={};
         $scope.ngPersona={};
         $scope.ngTarjeta={};
     }
 
-    //Obtener todas las categorias
-    $scope.getAllCategorias = function() {
-        $http.get("/rest/configuracion/categoria").then(function (response) {
-            $scope.categorias = response.data;
+    //Obtener todas las categorias Ingreso
+    $scope.getAllCategoriasIngreso = function() {
+        $http.get("/rest/configuracion/categoriasIngreso").then(function (response) {
+            $scope.categoriasI = response.data;
             loadComplete();
-        });
+        });        
     };
 
+    //Obtener todas las categorias Gasto
+    $scope.getAllCategoriasGasto = function() {
+        $http.get("/rest/configuracion/categoriasGasto").then(function (response) {
+            $scope.categoriasG = response.data;
+            loadComplete();
+        });        
+    };
+
+    //Obtener categoria
+    $scope.getCategoria = function(event) {
+        $scope.categoriaId = event.currentTarget.getAttribute("data-id");
+        $http.get('/rest/configuracion/categoria/'+ $scope.categoriaId)
+            .then(function successCallback(response) {
+                $scope.ngCategoria=response.data;
+                loadComplete();
+            });
+    };
 
     //Alta categoria ingreso
     $scope.addCategoriaIngreso = function() {
-        $http.post('/rest/configuracion/categoria/alta', $scope.ngCategoria)
+        $http.post('/rest/configuracion/categoria/alta', $scope.ngCategoriaingreso)
             .then(function successCallback(response) {
-                $scope.categorias.push(response.data);
-                $scope.categorias.isGasto="false"
-                $scope.ngCategoria={};
+                $scope.categoriasI.push(response.data);
+                $scope.categoriasI.isGasto="false"
+                $scope.ngCategoriaingreso={};
                 $scope.messageCategoria='';
               }, function errorCallback(response) {
                 $scope.messageCategoria=response.data.message;
@@ -38,22 +57,50 @@ app.controller('configuracionController', function ($scope, $http) {
 
     //Alta categoria gasto
     $scope.addCategoriaGasto = function() {
-        $http.post('/rest/configuracion/categoria/alta', $scope.ngCategoria)
+        $http.post('/rest/configuracion/categoria/alta', $scope.ngCategoriaGasto)
             .then(function successCallback(response) {
-                $scope.categorias.push(response.data);
-                $scope.categorias.isGasto="true"
-                $scope.ngCategoria={};
+                $scope.categoriasG.push(response.data);
+                $scope.categoriasG.isGasto="true"
+                $scope.ngCategoriaGasto={};
                 $scope.messageCategoria='';
               }, function errorCallback(response) {
                 $scope.messageCategoria=response.data.message;
             });
     };
 
-    //Actualizar categoria
-    $scope.updateCategoria = function() {
-        $http.put('/rest/configuracion/categoria/actualizar/'+ $scope.ngCategoria.id)
+    //Actualizar categoria Ingreso
+    $scope.updateCategoriaIngreso = function(event) {
+        $http.put('/rest/configuracion/categoria/actualizar/'+ $scope.ngCategoriaingreso.id)
             .then(function successCallback(response) {
-                $scope.getAllCategorias();
+                $scope.getAllCategoriasIngreso();
+                $scope.ngCategoriaingreso={};
+                $scope.messageCategoria='';
+            }, function errorCallback(response) {
+                $scope.messageCategoria=response.data.message;
+            });
+    };
+    
+    //Actualizar categoria Gasto
+    $scope.updateCategoriaGasto = function(event) {
+        $scope.categoriaGastoId = event.currentTarget.getAttribute("data-id");
+        $http.put('/rest/configuracion/categoria/actualizar/'+ $scope.categoriaGastoId)
+            .then(function successCallback(response) {
+                $scope.getAllCategoriasGasto();
+                $scope.ngCategoriaGasto={};
+                $scope.messageCategoria='';
+            }, function errorCallback(response) {
+                $scope.messageCategoria=response.data.message;
+            });
+    };
+
+    //Eliminar categoria
+    $scope.deleteCategoria = function(event) {
+        $scope.ngCategoria={};
+        $scope.ngCategoria.id = event.currentTarget.getAttribute("data-id");
+        $http.put('/rest/configuracion/categoria/baja/'+ $scope.ngCategoria.id,$scope.ngCategoria)
+            .then(function successCallback(response) {
+                $scope.getAllCategoriasIngreso();
+                $scope.getAllCategoriasGasto();
                 $scope.ngCategoria={};
                 $scope.messageCategoria='';
             }, function errorCallback(response) {
@@ -61,7 +108,6 @@ app.controller('configuracionController', function ($scope, $http) {
             });
     };
     
-
     //Obtener todas las inversiones
     $scope.getAllInversiones = function() {
         $http.get("/rest/configuracion/inversion").then(function (response) {
@@ -149,7 +195,7 @@ app.controller('configuracionController', function ($scope, $http) {
     };
 
     //Actualizar tarjeta
-    $scope.updateTarjeta = function() {
+    $scope.updateTarjeta = function(event) {
         $http.put('/rest/configuracion/tarjeta/actualizar/'+ $scope.ngTarjeta.id)
             .then(function successCallback(response) {
                 $scope.getAllTarjetas();

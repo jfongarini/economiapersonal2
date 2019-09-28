@@ -16,8 +16,12 @@ public class ConfiguracionRepository extends AbstractRepository {
 
 	
 	//Categoria
-	public List<Categoria> getCategorias() {
-		return getCurrentSession().createQuery("from Categoria").list();
+	public List<Categoria> getCategoriasIngreso() {
+		return getCurrentSession().createQuery("from Categoria where isGasto=false and vigente=true").list();
+	}
+	
+	public List<Categoria> getCategoriasGasto() {
+		return getCurrentSession().createQuery("from Categoria where isGasto=true and vigente=true").list();
 	}
 	
 	public Integer saveCategoria(Categoria categoria) {
