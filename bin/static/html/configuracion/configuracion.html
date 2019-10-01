@@ -12,12 +12,12 @@
      <div class="card categoriasIngreso">
       <form ng-submit="addCategoriaIngreso()">
         <div class=card-title><i class="material-icons">attach_money</i><label>CATEGOR&Iacute;AS DE INGRESOS</label></div>
-        <input tipe="text" placeholder="Nombre" ng-model="ngCategoriaIngreos.nombre" maxlength="50" pattern="^[^\s].*([A-zÀ-ž\s]){2,25}" ng-pattern-restrict required>        
+        <input tipe="text" placeholder="Nombre" ng-model="ngCategoriaIngreso.nombre" maxlength="50" pattern="^[^\s].*([A-zÀ-ž0-9\s]){2,25}" ng-pattern-restrict required>        
         <button class="button accept" type="submit"></button>
         <table id=table>
           <tbody>
           <tr ng-cloak id={{categoriaI.id}}  class="data-row fade-in"  ng-repeat="categoriaI in categoriasI" >
-          <td data-id={{categoriaI.id}} ng-click="loadServicio($event)">{{categoriaI.nombre}}</td>          
+          <td data-id={{categoriaI.id}} ng-click="getCategoriaIngreso($event)">{{categoriaI.nombre}}</td>          
           <td class=delete ><i class="material-icons" data-id={{categoriaI.id}} ng-click="deleteCategoria($event)">clear</i></td>
           </tr>
           </tbody>
@@ -29,14 +29,14 @@
 
   <div class=fila-tarjetas-configuracion>
      <div class="card categoriasGasto">
-      <form ng-submit="addCategoriaIngreso()">
+      <form ng-submit="addCategoriaGasto()">
         <div class=card-title><i class="material-icons">money_off</i><label>CATEGOR&Iacute;AS DE GASTOS</label></div>
         <input tipe="text" placeholder="Nombre" ng-model="ngCategoriaGasto.nombre" maxlength="50" pattern="^[^\s].*([A-zÀ-ž\s]){2,25}" ng-pattern-restrict required>        
         <button class="button accept" type="submit"></button>
         <table id=table>
           <tbody>
           <tr ng-cloak id={{categoriaG.id}}  class="data-row fade-in"  ng-repeat="categoriaG in categoriasG" >
-          <td data-id={{categoriaG.id}} ng-click="loadServicio($event)">{{categoriaG.nombre}}</td>          
+          <td data-id={{categoriaG.id}} ng-click="getCategoriaGasto($event)">{{categoriaG.nombre}}</td>          
           <td class=delete ><i class="material-icons" data-id={{categoriaG.id}} ng-click="deleteCategoria($event)">clear</i></td>
           </tr>
           </tbody>
@@ -48,15 +48,15 @@
 
 <div class=fila-tarjetas-configuracion>
      <div class="card categoriasIngreso">
-      <form ng-submit="addCategoriaIngreso()">
+      <form ng-submit="addInversion()">
         <div class=card-title><i class="material-icons">work_outline</i><label>INVERSIONES</label></div>
         <input tipe="text" placeholder="Nombre" ng-model="ngInversion.nombre" maxlength="50" pattern="^[^\s].*([A-zÀ-ž\s]){2,25}" ng-pattern-restrict required>        
         <button class="button accept" type="submit"></button>
         <table id=table>
           <tbody>
           <tr ng-cloak id={{inversion.id}}  class="data-row fade-in"  ng-repeat="inversion in inversiones" >
-          <td data-id={{inversion.id}} ng-click="loadServicio($event)">{{inversion.nombre}}</td>          
-          <td class=delete ><i class="material-icons" data-id={{inversion.id}} ng-click="updateCategoria($event)">clear</i></td>
+          <td data-id={{inversion.id}} ng-click="getInversion($event)">{{inversion.nombre}}</td>          
+          <td class=delete ><i class="material-icons" data-id={{inversion.id}} ng-click="deleteInversion($event)">clear</i></td>
           </tr>
           </tbody>
         </table>
@@ -67,15 +67,15 @@
 
   <div class=fila-tarjetas-configuracion>
      <div class="card categoriasGasto">
-      <form ng-submit="addCategoriaIngreso()">
+      <form ng-submit="addTarjeta()">
         <div class=card-title><i class="material-icons">credit_card</i><label>TARJETAS</label></div>
         <input tipe="text" placeholder="Nombre" ng-model="ngTarjeta.nombre" maxlength="50" pattern="^[^\s].*([A-zÀ-ž\s]){2,25}" ng-pattern-restrict required>        
         <button class="button accept" type="submit"></button>
         <table id=table>
           <tbody>
           <tr ng-cloak id={{tarjeta.id}}  class="data-row fade-in"  ng-repeat="tarjeta in tarjetas" >
-          <td data-id={{tarjeta.id}} ng-click="loadServicio($event)">{{tarjeta.nombre}}</td>          
-          <td class=delete ><i class="material-icons" data-id={{tarjeta.id}} ng-click="updateCategoria($event)">clear</i></td>
+          <td data-id={{tarjeta.id}} ng-click="getTarjeta($event)">{{tarjeta.nombre}}</td>          
+          <td class=delete ><i class="material-icons" data-id={{tarjeta.id}} ng-click="deleteTarjeta($event)">clear</i></td>
           </tr>
           </tbody>
         </table>

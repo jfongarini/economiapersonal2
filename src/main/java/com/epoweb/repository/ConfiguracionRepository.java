@@ -27,10 +27,6 @@ public class ConfiguracionRepository extends AbstractRepository {
 	public Integer saveCategoria(Categoria categoria) {
 		return (Integer) getCurrentSession().save(categoria);
 	}
-
-	public void updateCategoria(Categoria categoria) {
-		getCurrentSession().update(categoria);
-	}
 	
 	public Categoria getCategoria(int id){
 		return getCurrentSession().get(Categoria.class, id);
@@ -40,13 +36,9 @@ public class ConfiguracionRepository extends AbstractRepository {
 	public Integer saveInversion (Inversion inversion) {
 		return (Integer) getCurrentSession().save(inversion); 
 	}
-
-	public void updateInversion(Inversion inversion) {
-		getCurrentSession().update(inversion);
-	}
 		
 	public List<Inversion> getInversiones() {
-		return getCurrentSession().createQuery("from Inversion").list();
+		return getCurrentSession().createQuery("from Inversion where vigente=true").list();
 	}
 	
 	public Inversion getInversion(int id){
@@ -59,12 +51,8 @@ public class ConfiguracionRepository extends AbstractRepository {
 		return (Integer) getCurrentSession().save(persona);
 	}
 
-	public void updatePersona(Persona persona) {
-		getCurrentSession().update(persona);
-	}
-	
 	public List<Persona> getPersonas() {
-		return getCurrentSession().createQuery("from Persona").list();
+		return getCurrentSession().createQuery("from Persona where vigente=true").list();
 	}
 	
 	public Persona getPersona(int id){
@@ -76,13 +64,9 @@ public class ConfiguracionRepository extends AbstractRepository {
 	public Integer saveTarjeta(Tarjeta tarjeta) {
 		return (Integer) getCurrentSession().save(tarjeta);
 	}
-
-	public void updateTarjeta(Tarjeta tarjeta) {
-		getCurrentSession().update(tarjeta);
-	}
 	
 	public List<Tarjeta> getTarjetas() {
-		return getCurrentSession().createQuery("from Tarjeta").list();
+		return getCurrentSession().createQuery("from Tarjeta where vigente=true").list();
 	}
 	
 	public Tarjeta getTarjeta(int id){

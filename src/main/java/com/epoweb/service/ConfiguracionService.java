@@ -17,19 +17,65 @@ public class ConfiguracionService {
 
 	private ConfiguracionRepository repository;	
 	
-	//Categoria
+	// save
 	public Integer saveCategoria(Categoria categoria) {
 		LOGGER.info("Guardando la categoria: "+ categoria.getNombre());
 		return repository.saveCategoria(categoria);
 	}	
 	
+	public Integer saveInversion (Inversion inversion) {
+		LOGGER.info("Guardando la inversion: "+ inversion.getNombre());
+		return repository.saveInversion(inversion);
+	}
+	
+	public Integer savePersona(Persona persona) {
+		LOGGER.info("Guardando la persona: "+ persona.getNombre());
+		return repository.savePersona(persona);
+	}
+	
+	public Integer saveTarjeta(Tarjeta tarjeta) {
+		LOGGER.info("Guardando la tarjeta: "+ tarjeta.getNombre());
+		return repository.saveTarjeta(tarjeta);
+	}
+	
+	
+	
+	// update	
+	
 	public Categoria updateCategoria(Categoria categoria) {
 		LOGGER.info("Actualizando Categoria " + categoria.getNombre());
-		Categoria updated = getCategoria(categoria.getId());
-		updated.update(categoria);
-		repository.updateCategoria(updated);
-		return updated;
+		Categoria repoCategoria = getCategoria(categoria.getId());
+		repoCategoria.setNombre(categoria.getNombre());
+		saveCategoria(repoCategoria);
+		return repoCategoria;
 	}
+	
+	public Inversion updateInversion(Inversion inversion) {
+		LOGGER.info("Actualizando Inversion " + inversion.getNombre());
+		Inversion repoInversion = getInversion(inversion.getId());
+		repoInversion.setNombre(inversion.getNombre());
+		saveInversion(repoInversion);
+		return repoInversion;
+	}
+	
+	public Persona updatePersona(Persona persona) {
+		LOGGER.info("Actualizando Persona " + persona.getNombre());
+		Persona repoPersona = getPersona(persona.getId());
+		repoPersona.setNombre(persona.getNombre());
+		savePersona(repoPersona);
+		return repoPersona;
+	}
+	
+	public Tarjeta updateTarjeta(Tarjeta tarjeta) {
+		LOGGER.info("Actualizando Tarjeta " + tarjeta.getNombre());
+		Tarjeta repoTarjeta = getTarjeta(tarjeta.getId());
+		repoTarjeta.setNombre(tarjeta.getNombre());
+		saveTarjeta(repoTarjeta);		
+		return repoTarjeta;
+	}
+	
+	
+	// delete	
 	
 	public Categoria deleteCategoria(Categoria categoria) {
 		Categoria repoCategoria = getCategoria(categoria.getId());
@@ -38,9 +84,50 @@ public class ConfiguracionService {
 		return repoCategoria;
 	}
 	
+	public Inversion deleteInversion(Inversion inversion) {
+		Inversion repoInversion = getInversion(inversion.getId());
+		repoInversion.setVigente(false);
+		saveInversion(repoInversion);
+		return repoInversion;
+	}
+	
+	public Tarjeta deleteTarjeta(Tarjeta tarjeta) {
+		Tarjeta repoTarjeta = getTarjeta(tarjeta.getId());
+		repoTarjeta.setVigente(false);
+		saveTarjeta(repoTarjeta);
+		return repoTarjeta;
+	}
+	
+	public Persona deletePersona(Persona persona) {
+		Persona repoPersona = getPersona(persona.getId());
+		repoPersona.setVigente(false);
+		savePersona(repoPersona);
+		return repoPersona;
+	}
+	
+	
+	
+	// get individual
+	
 	public Categoria getCategoria(int categoriaID) {
 		return repository.getCategoria(categoriaID);
 	}
+	
+	public Inversion getInversion(int inversionID) {
+		return repository.getInversion(inversionID);
+	}
+	
+	public Persona getPersona(int personaID) {
+		return repository.getPersona(personaID);
+	}
+	
+	public Tarjeta getTarjeta(int tarjetaID) {
+		return repository.getTarjeta(tarjetaID);
+	}
+	
+	
+	
+	// get all
 	
 	public List<Categoria> getCategoriasIngreso() {
 		LOGGER.info("Obteniendo todas las categorias");
@@ -51,57 +138,15 @@ public class ConfiguracionService {
 		LOGGER.info("Obteniendo todas las categorias");
 		return repository.getCategoriasGasto();
 	}
-	
-	//Inversion
-	public Integer saveInversion (Inversion inversion) {
-		LOGGER.info("Guardando la inversion: "+ inversion.getNombre());
-		return repository.saveInversion(inversion);
-	}
 		
 	public List<Inversion> getInversiones() {
 		LOGGER.info("Obteniendo todas las inversiones");
 		return repository.getInversiones();
 	}
 	
-	public Inversion updateInversion(Inversion inversion) {
-		LOGGER.info("Actualizando Inversion " + inversion.getId());
-		Inversion updated = getInversion(inversion.getId());
-		updated.update(inversion);
-		repository.updateInversion(updated);
-		return updated;
-	}
-	
-	public Inversion getInversion(int inversionID) {
-		return repository.getInversion(inversionID);
-	}
-	
-	//Persona
-	public Integer savePersona(Persona persona) {
-		LOGGER.info("Guardando la persona: "+ persona.getNombre());
-		return repository.savePersona(persona);
-	}
-
 	public List<Persona> getPersonas() {
 		LOGGER.info("Obteniendo todas las personas");
 		return repository.getPersonas();
-	}
-	
-	public Persona updatePersona(Persona persona) {
-		LOGGER.info("Actualizando Persona " + persona.getNombre());
-		Persona updated = getPersona(persona.getId());
-		updated.update(persona);
-		repository.updatePersona(updated);
-		return updated;
-	}
-	
-	public Persona getPersona(int personaID) {
-		return repository.getPersona(personaID);
-	}
-	
-	//Tarjeta
-	public Integer saveTarjeta(Tarjeta tarjeta) {
-		LOGGER.info("Guardando la tarjeta: "+ tarjeta.getNombre());
-		return repository.saveTarjeta(tarjeta);
 	}
 	
 	public List<Tarjeta> getTarjetas() {
@@ -109,17 +154,9 @@ public class ConfiguracionService {
 		return repository.getTarjetas();
 	}
 	
-	public Tarjeta updateTarjeta(Tarjeta tarjeta) {
-		LOGGER.info("Actualizando Tarjeta " + tarjeta.getNombre());
-		Tarjeta updated = getTarjeta(tarjeta.getId());
-		updated.update(tarjeta);
-		repository.updateTarjeta(updated);
-		return updated;
-	}
 	
-	public Tarjeta getTarjeta(int tarjetaID) {
-		return repository.getTarjeta(tarjetaID);
-	}
+	
+	
 	
 	
 	

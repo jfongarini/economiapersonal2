@@ -118,3 +118,4 @@ function imprimir() {
 }
 
 var app = angular.module('epoweb', []);
+var personaId = 1;
