@@ -6,7 +6,7 @@ app.controller('configuracionController', function ($scope, $http) {
         $scope.getAllCategoriasIngreso();
         $scope.getAllCategoriasGasto();
         $scope.getAllInversiones();
-        $scope.getAllPersonas();
+        $scope.getPersona();
         $scope.getAllTarjetas();
 
         $scope.ngCategoriaIngreso={};
@@ -36,13 +36,6 @@ app.controller('configuracionController', function ($scope, $http) {
     $scope.getAllInversiones = function() {
         $http.get("/rest/configuracion/inversion").then(function (response) {
             $scope.inversiones = response.data;
-        });
-    };
-
-    //Obtener todas las personas
-    $scope.getAllPersonas = function() {
-        $http.get("/rest/configuracion/persona").then(function (response) {
-            $scope.personas = response.data;
         });
     };
 
@@ -90,8 +83,7 @@ app.controller('configuracionController', function ($scope, $http) {
     };
 
     $scope.getPersona = function(event) {
-        $scope.PersonaId = event.currentTarget.getAttribute("data-id");
-        $http.get('/rest/configuracion/persona/'+ $scope.PersonaId)
+        $http.get('/rest/configuracion/persona/'+ personaId)
             .then(function successCallback(response) {
                 $scope.ngPersona=response.data;
             });
@@ -179,18 +171,6 @@ app.controller('configuracionController', function ($scope, $http) {
         }
     };
 
-    //Alta persona
-    $scope.addPersona = function() {
-        $http.post('/rest/configuracion/persona/alta', $scope.ngPersona)
-            .then(function successCallback(response) {
-                $scope.personas.push(response.data);
-                $scope.ngPersona={};
-                $scope.messagePersona='';
-              }, function errorCallback(response) {
-                $scope.messagePersona=response.data.message;
-            });
-    };
-
     //Alta tarjeta
     $scope.addTarjeta = function() {
         if($scope.ngTarjeta.id  === undefined){
@@ -222,9 +202,8 @@ app.controller('configuracionController', function ($scope, $http) {
 
     //Actualizar persona
     $scope.updatePersona = function() {
-        $http.put('/rest/configuracion/persona/actualizar/'+ $scope.ngPersona.id)
+        $http.put('/rest/configuracion/persona/actualizar/'+ personaId)
             .then(function successCallback(response) {
-                $scope.getAllPersonas();
                 $scope.ngPersona={};
                 $scope.messagePersona='';
             }, function errorCallback(response) {

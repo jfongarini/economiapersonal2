@@ -330,9 +330,23 @@ display: initial;
 }
 
 
-.categoriasIngreso, .categoriasGasto{
+.categoriasIngreso{
     width: 360px;
     height: 230px;
+    padding: 20px;
+    margin-right: 20px;
+    display: inline-block;
+    vertical-align: top;
+    overflow-y: hidden;
+    margin-top: 20px;
+    margin-left: 60px;
+    
+}
+
+.categoriasGasto{
+    float: left;
+    width: 360px;
+    height: 520px;
     padding: 20px;
     margin-right: 20px;
     display: inline-block;
@@ -380,4 +394,9 @@ display: initial;
 
 .card-title{
     margin-bottom: 20px
+}
+
+.form-field{
+    font-size: 13px;
+    margin-bottom: 17px;
 }
