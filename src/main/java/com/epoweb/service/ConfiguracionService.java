@@ -62,6 +62,8 @@ public class ConfiguracionService {
 		LOGGER.info("Actualizando Persona " + persona.getNombre());
 		Persona repoPersona = getPersona(persona.getId());
 		repoPersona.setNombre(persona.getNombre());
+		repoPersona.setFecha(persona.getFecha());
+		repoPersona.setImagen(persona.getImagen());
 		savePersona(repoPersona);
 		return repoPersona;
 	}

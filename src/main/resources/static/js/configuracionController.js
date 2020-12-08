@@ -3,10 +3,10 @@ app.controller('configuracionController', function ($scope, $http) {
     //INIT CONFIGURACION
     $scope.init = function(){
         $scope.activeConfiguracion=true;
+        $scope.getPersona();
         $scope.getAllCategoriasIngreso();
         $scope.getAllCategoriasGasto();
-        $scope.getAllInversiones();
-        $scope.getPersona();
+        $scope.getAllInversiones();        
         $scope.getAllTarjetas();
 
         $scope.ngCategoriaIngreso={};
@@ -82,10 +82,11 @@ app.controller('configuracionController', function ($scope, $http) {
             });
     };
 
-    $scope.getPersona = function(event) {
+    $scope.getPersona = function() {
         $http.get('/rest/configuracion/persona/'+ personaId)
             .then(function successCallback(response) {
                 $scope.ngPersona=response.data;
+                $scope.ngPersonaFecha = stringToDate($scope.ngPersona.fecha);
             });
     };
 
@@ -202,15 +203,17 @@ app.controller('configuracionController', function ($scope, $http) {
 
     //Actualizar persona
     $scope.updatePersona = function() {
-        $http.put('/rest/configuracion/persona/actualizar/'+ personaId)
+        //$scope.ngPersona.fecha = $scope.ngPersonaFecha;
+        $scope.ngPersona.fecha = getStringDate($scope.ngPersonaFecha);
+        $http.put('/rest/configuracion/persona/actualizar/'+ personaId,$scope.ngPersona)
             .then(function successCallback(response) {
+                $scope.getPersona();
                 $scope.ngPersona={};
                 $scope.messagePersona='';
             }, function errorCallback(response) {
                 $scope.messagePersona=response.data.message;
             });
     };
-
 
 
     // Baja

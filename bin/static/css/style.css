@@ -400,3 +400,144 @@ display: initial;
     font-size: 13px;
     margin-bottom: 17px;
 }
+
+
+.foot {
+  margin-bottom: 20px;
+  margin-left: -5px;
+  user-select: none;
+  font-size: 13px;
+  bottom: 0;
+  right: 0;
+  position: fixed;
+}
+
+.foot-button {
+  cursor: pointer;
+/*  margin: 5px;
+  padding: 15px;*/
+  /*background-color: #e27c60;*/
+  display: inline-block;
+}
+
+.foot-button a, .foot-button a:visited, .foot-button a:hover, .foot-button a:active {
+  color: inherit;
+  font-size: 13px;
+}
+
+.foot-button select {
+  cursor: pointer;
+}
+
+.material-icons.md-60{
+    color: #00695c;
+    /* color: #40776e; */
+    font-size: 60px;
+}
+
+.diario-add{
+  user-select: none;
+  font-size: 13px;
+  bottom: 0;
+  right: 0;
+  position: fixed;
+}
+
+.nuevo-diario{
+    /*width: 350px;*/
+    padding: 20px;
+    /*margin: 10px;*/
+    margin-left: 0px;
+    margin-top: 15px;
+    padding-bottom: 10px;
+    margin-right: 20px;
+}
+
+
+.switch {
+  position: relative;
+  display: inline-block;
+  width: 64px !important;
+  height: 20px;
+  margin-bottom: 8px;
+  margin-left: 70%;
+}
+
+.switch input {display:none;}
+
+.slider {
+  position: absolute;
+  cursor: pointer;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: #ca2222;
+  -webkit-transition: .4s;
+  transition: .4s;
+}
+
+.slider:before {
+  position: absolute;
+  content: "";
+  height: 14px;
+  width: 14px;
+  left: 3px;
+  bottom: 3px;
+  background-color: white;
+  -webkit-transition: .3s;
+  transition: .3s;
+}
+
+input:checked + .slider {
+  background-color: #2ab934;
+}
+
+input:focus + .slider {
+  box-shadow: 0 0 1px #2196F3;
+}
+
+input:checked + .slider:before {
+  -webkit-transform: translateX(50px);
+  -ms-transform: translateX(50px);
+  transform: translateX(44px);
+}
+
+.on
+{
+  display: none;
+}
+
+.on, .off
+{
+  color: white;
+  position: absolute;
+  transform: translate(-50%,-50%);
+  top: 50%;
+  font-size: 10px;
+  font-family: Verdana, sans-serif;
+}
+
+.on
+{
+  left: 40%;
+}
+
+.off
+{
+  left: 60%;
+}
+
+input:checked+ .slider .on
+{display: block;}
+
+input:checked + .slider .off
+{display: none;}
+
+/* Rounded sliders */
+.slider.round {
+  border-radius: 34px;
+}
+
+.slider.round:before {
+  border-radius: 50%;}

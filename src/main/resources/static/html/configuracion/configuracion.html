@@ -87,8 +87,8 @@
   <div class=fila-tarjetas-configuracion>
      <div class="card categoriasIngreso">
         <div class=card-title><i class="material-icons">person</i><label>USUARIO</label></div>        
-        <div><label class=form-message>Nombre </label><input tipe="text" placeholder="ngPersona.nombre" ng-model="ngTarjeta.nombre" maxlength="50" pattern="^[^\s].*([A-zÀ-ž0-9\s]){2,25}" ng-pattern-restrict required></input></div>
-        <div><label class=form-message>Fecha </label><input type="date" ng-model="ngDateTurno" ng-change="getAllEmpleados()" required></input></div>
+        <div><label class=form-message>Nombre </label><input tipe="text" placeholder=ngPersona.nombre ng-model="ngPersona.nombre" maxlength="50" pattern="^[^\s].*([A-zÀ-ž0-9\s]){2,25}" ng-pattern-restrict required></input></div>
+        <div><label class=form-message>Fecha </label><input type="month" ng-model="ngPersonaFecha" ng-change="updatePersona()" required></input></div>
         <div><label class=form-message>Im&aacute;gen </label><input tipe="text" placeholder="Nombre" ng-model="ngTarjeta.nombre" maxlength="50" pattern="^[^\s].*([A-zÀ-ž0-9\s]){2,25}" ng-pattern-restrict required></input></div>
 
         
